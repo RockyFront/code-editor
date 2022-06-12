@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- <script src="/js/jquery.min.js"></script> -->
+		<script src="./plugin/codemirror/lib/codemirror.js"></script>
+		<link rel="stylesheet" href="./plugin/codemirror/lib/codemirror.css" />
+		<link
+			rel="stylesheet"
+			href="./plugin/codemirror/mode/javascript/javascript.js"
+		/>
+		<script src="./js/app.js"></script>
+		<link rel="stylesheet" href="./plugin/codemirror/theme/darcula.css" />
+		<script src="./plugin/codemirror/addon/edit/closebrackets.js"></script>
+		<script src="./plugin/codemirror/addon/edit/trailingspace.js"></script>
+		<script src="./plugin/codemirror/keymap/vim.js"></script>
+		<script src="./plugin/codemirror/addon/selection/active-line.js"></script>
+		<script src="./plugin/codemirror/addon/hint/show-hint.js"></script>
+		<script src="./plugin/codemirror/addon/hint/anyword-hint.js"></script>
+
+		<title>Hootan code-editor</title>
+	</head>
+	<body>
+		<textarea name="editor" id="editor" cols="50" rows="18"></textarea>
+		<script>
+			let editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+				lineNumbers: true,
+				mode: "javascript",
+				theme: "darcula",
+				indentUnit: 4,
+				indentWithTabs: true,
+				tabSize: 4,
+				lineWrapping: true,
+				extraKeys: {
+					"Ctrl-Space": "autocomplete",
+					F11: function (cm) {
+						cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+					},
+					Esc: function (cm) {
+						if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+					},
+				},
+				hintOptions: {
+					tables: {
+						users: {
+							name: null,
+							score: null,
+							birthDate: null,
+						},
+					},
+				},
+				autoCloseBrackets: true,
+				matchBrackets: true,
+				showCursorWhenSelecting: true,
+				autoCloseTags: true,
+				autoCloseBrackets: true,
+				matchTags: { bothTags: true },
+				autoRefresh: true,
+				scrollPastEnd: true,
+				styleActiveSelected: true,
+				styleSelectedText: true,
+				styleSelectedLine: true,
+				styleActiveLine: true,
+				styleFoldColumn: true,
+				hintOptions: true,
+			});
+			editor.setSize("40rem", "16rem");
+		</script>
+	</body>
+</html>
